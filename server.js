@@ -21,7 +21,11 @@ app.use(helmet());
 
 // 2. CORS Configuration (Allows requests from frontend)
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+        process.env.FRONTEND_URL // Add this in Render Environment Variables later
+    ].filter(Boolean), // Filters out undefined if ENV is not set
     credentials: true
 }));
 
