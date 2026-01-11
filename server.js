@@ -24,9 +24,12 @@ app.use(cors({
     origin: [
         'http://localhost:5173',
         'http://127.0.0.1:5173',
+        'https://portfolio-frontend-self-six.vercel.app', // Production Vercel App
         process.env.FRONTEND_URL // Add this in Render Environment Variables later
     ].filter(Boolean), // Filters out undefined if ENV is not set
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Explicitly allow these methods
+    allowedHeaders: ['Content-Type', 'Authorization', 'password'] // Explicitly allow headers including your custom 'password' header
 }));
 
 // 3. Body Parser (Must be BEFORE sanitization)
